@@ -1,0 +1,124 @@
+{% extends "admin/partials/base.admin.html.twig" %}
+
+{% block title %}Edit Movie | Admin{% endblock %}
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ baseUrl }}/assets/css/formStyle.css">
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5" id="form-container">
+        <form action="{{ baseUrl }}/admin/movie/edit" method="post" id="form-data" class="pb-3" enctype="multipart/form-data">
+
+            <div class="input-group">
+                <div class="input-group-prepend form-group">
+                    <label class="input-group-text" for="movie-title-old">Movie:</label>
+                </div>
+                <select class="custom-select" name="movie-title-old" id="movie-title-old">
+                    <option value="">--Please choose a movie--</option>
+                    {% if arrayMovies is defined %}
+                        {% for id, movie in arrayMovies %}
+                            <option name="{{ id }}" value="{{ id }}">{{ movie.title }} - {{ movie.releaseYear }}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+            </div>
+
+
+            <div class="form-group hidden">
+                <label for="movie-title-new">Title:</label>
+                <input type="text" name="movie-title-new" id="movie-title-new" class="form-control" autofocus
+                       required>
+            </div>
+
+
+            <div class="input-group pb-3 hidden" id="genre-text">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="movie-genre-new">Genre:</label>
+                </div>
+                <select class="custom-select hidden" name="movie-genre-new" id="movie-genre-new">
+                    <option value="">--Please choose a genre--</option>
+                    {% if arrayGenres is defined %}
+                        {% for id, genre in arrayGenres %}
+                            <option name="{{ id }}" value="{{ id }}">{{ genre }}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+            </div>
+
+
+            <div class="input-group pb-3 hidden" id="genre-text">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="movie-director-new">Director:</label>
+                </div>
+                <select class="custom-select" name="movie-director-new" id="movie-director-new">
+                    <option value="">--Please choose an artist--</option>
+                    {% if arrayArtists is defined %}
+                        {% for id, artist in arrayArtists %}
+                            <option name="{{ id }}" value="{{ id }}">{{ artist.lastname }} {{ artist.firstname }}
+                                - {{ artist.birthdate }}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+            </div>
+
+
+            <div class="form-group hidden">
+                <label for="movie-year-new">Release year:</label>
+                <input type="number" name="movie-year-new" id="movie-year-new" class="form-control" required>
+            </div>
+
+
+            <div class="form-group hidden">
+                <div class="pb-4" id="previous-poster-group">
+                    <input class="btn btn-primary" id="previous-poster-btn" type="button" value="See previous poster"
+                           data-toggle="collapse"
+                           data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+
+                </div>
+                <div class="collapse" id="collapseExample">
+                    <div class="d-flex justify-content-center">
+                        <img src="" alt="" id="movie-poster-preview" class="w-50">
+                    </div>
+                </div>
+                <label for="movie-poster-new">New Poster:</label>
+                <div class="custom-file">
+                    <label for="movie-poster-new" class="custom-file-label text-left">Movie poster</label>
+                    <input id="movie-poster-new" name="movie-poster-new" class="custom-file-input"
+                           type="file">
+                </div>
+            </div>
+
+
+            <div class="form-group hidden">
+                <label for="movie-synopsis-new">Synopsis:</label>
+                <textarea name="movie-synopsis-new" id="movie-synopsis-new" class="form-control" rows="5"></textarea>
+            </div>
+
+
+            <div class="hidden" id="form-btn-group">
+                <input type="submit" value="Edit movie" class="btn btn-primary">
+                <input type="reset" value="Reset" class="btn btn-danger">
+            </div>
+        </form>
+        {% if addArtist is defined %}
+            {% if addArtist == true %}
+                <div class="alert alert-success" role="alert">
+                    Movie added with success !
+                </div>
+            {% else %}
+                <div class="alert alert-danger" role="alert">
+                    Error when adding movie !
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ baseUrl }}/assets/js/movieFileInputForm.js"></script>
+{% endblock %}

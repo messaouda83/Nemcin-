@@ -1,0 +1,97 @@
+{% extends "admin/partials/base.admin.html.twig" %}
+
+{% block title %}Add Movie | Admin{% endblock %}
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ baseUrl }}/assets/css/formStyle.css">
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5" id="form-container">
+        <form action="{{ baseUrl }}/admin/movie/add" method="post" id="form-data" class="pb-3" enctype="multipart/form-data">
+
+            <div class="form-group">
+                <label for="movie-title-add">Title:</label>
+                <input type="text" name="movie-title-add" id="movie-title-add" class="form-control" autofocus required>
+            </div>
+
+
+            <div class="input-group pb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="movie-genre-add">Genre:</label>
+                </div>
+                <select class="custom-select" name="movie-genre-add" id="movie-genre-add">
+                    <option value="">--Please choose a genre--</option>
+                    {% if arrayGenres is defined %}
+                        {% for id, genre in arrayGenres %}
+                            <option name="{{ id }}" value="{{ id }}">{{ genre }}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+            </div>
+
+
+            <div class="input-group pb-3" id="genre-text">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="movie-director-add">Director:</label>
+                </div>
+                <select class="custom-select" name="movie-director-add" id="movie-director-add">
+                    <option value="">--Please choose an artist--</option>
+                    {% if arrayArtists is defined %}
+                        {% for id, artist in arrayArtists %}
+                            <option name="{{ id }}" value="{{ id }}">{{ artist.lastname }} {{ artist.firstname }}
+                                - {{ artist.birthdate }}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="movie-year-add">Release year:</label>
+                <input type="number" name="movie-year-add" id="movie-year-add" class="form-control" required>
+            </div>
+
+
+            <div class="form-group">
+                <label for="file">Poster:</label>
+                <div class="custom-file">
+                    <label for="movie-poster-add" class="custom-file-label text-left">Movie poster</label>
+                    <input id="movie-poster-add" required name="movie-poster-add" class="custom-file-input"
+                           type="file">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="movie-synopsis-add">Synopsis:</label>
+                <textarea name="movie-synopsis-add" id="movie-synopsis-add" class="form-control" rows="5"></textarea>
+            </div>
+
+
+            <div id="form-btn-group">
+                <input type="submit" value="Add movie" class="btn btn-primary">
+                <input type="reset" value="Reset" class="btn btn-danger">
+            </div>
+        </form>
+        {% if addArtist is defined %}
+            {% if addArtist == true %}
+                <div class="alert alert-success" role="alert">
+                    Movie added with success !
+                </div>
+            {% else %}
+                <div class="alert alert-danger" role="alert">
+                    Error when adding movie !
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ baseUrl }}/assets/js/movieFileInputForm.js"></script>
+{% endblock %}

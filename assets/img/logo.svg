@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612">
+    <title>Logo</title>
+    <path d="m 7.50075,307.5 a 300,300 0 0 1 300,-300 300,300 0 0 1 300,300 300,300 0 0 1 -300,300 300,300 0 0 1 -300,-300"
+          style="fill:#007bff;stroke:#007bff;stroke-width:15;stroke-linecap:round;stroke-linejoin:round"
+          id="path2"/>
+    <path d="m 97.50075,427.5 v 0 l 60,-240 m 45,120 v 0 l -45,-120 m 90,240 v 0 l 60,-240 m -105,120 v 0 l 105,-120 m 15,240 v 0 l 60,-240 a 90,75 0 0 1 90,75 120,45 0 0 1 -120,45 v 0 l 105,120"
+          style="fill:none;stroke:#ffffff;stroke-width:20;stroke-linecap:round;stroke-linejoin:round" id="path4"/>
+</svg>

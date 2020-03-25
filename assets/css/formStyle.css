@@ -1,0 +1,62 @@
+@media (max-width: 575.98px) {
+    #form-container {
+        width: 100%;
+    }
+
+    #form-data * {
+        font-size: 1.1em;
+    }
+
+    #form-data input {
+        height: 3em;
+        width: 100%;
+    }
+
+    #form-data #form-btn-group input:first-child {
+        margin-bottom: 0.5em;
+    }
+}
+
+@media (min-width: 576px) {
+    #form-container {
+        width: 58%;
+    }
+
+    #form-data input[type=submit], #form-data input[type=reset], #form-data input[type=button] {
+        width: 9em;
+    }
+
+    #form-data #previous-poster-group input[type=button] {
+        width: 18.20em;
+    }
+
+    #form-data #form-btn-group, #form-data #previous-poster-group {
+        text-align: end;
+    }
+}
+
+@media (min-width: 768px) {
+    #form-container {
+        width: 50%;
+    }
+}
+
+@media (min-width: 992px) {
+    #form-container {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1323px) {
+    #form-container {
+        width: 30%;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+form textarea {
+    resize: none;
+}

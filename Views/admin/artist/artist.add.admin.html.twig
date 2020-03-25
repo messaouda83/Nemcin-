@@ -1,0 +1,51 @@
+{% extends "admin/partials/base.admin.html.twig" %}
+
+{% block title %}Add Artist | Admin{% endblock %}
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ baseUrl }}/assets/css/formStyle.css">
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5" id="form-container">
+        <form action="{{ baseUrl }}/admin/artist/add" method="post" id="form-data" class="pb-3">
+            <div class="form-group">
+                <label for="artist-firstname-add">First name:</label>
+                <input type="text" name="artist-firstname-add" id="artist-firstname-add" placeholder=" Example: &quot;John&quot;"
+                       class="form-control" autofocus required>
+            </div>
+            <div class="form-group">
+                <label for="artist-lastname-add">Last name:</label>
+                <input type="text" name="artist-lastname-add" id="artist-lastname-add" placeholder=" Example: &quot;Smith&quot;"
+                       class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="artist-birthdate-add">Year of birth:</label>
+                <input type="number" name="artist-birthdate-add" id="artist-birthdate-add" placeholder=" Example: &quot;1990&quot;"
+                       class="form-control" required>
+            </div>
+            <div id="form-btn-group">
+                <input type="submit" value="Add artist" class="btn btn-primary">
+                <input type="reset" value="Reset" class="btn btn-danger">
+            </div>
+        </form>
+        {% if addArtist is defined %}
+            {% if addArtist == true %}
+                <div class="alert alert-success" role="alert">
+                    Artist added with success !
+                </div>
+            {% else %}
+                <div class="alert alert-danger" role="alert">
+                    Error when adding Artist !
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

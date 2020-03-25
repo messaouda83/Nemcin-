@@ -1,0 +1,45 @@
+##########################################
+## Disable redirect /folder to /folder/ ##
+##########################################
+DirectorySlash Off
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    #############################################
+    ## Rewrite every files to index.php?uri=$1 ##
+    #############################################
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteCond %{REQUEST_FILENAME} !-l
+    RewriteRule ^(.*)$ index.php?uri=$1 [L,NC]
+</IfModule>
+
+
+#######################################################
+## Disable access to all .php files exepts index.php ##
+#######################################################
+<FilesMatch ".*\.php$">
+    Require all denied
+</FilesMatch>
+
+<Files "index.php">
+    Require all granted
+</Files>
+
+######################################
+## Allow only assets block the rest ##
+######################################
+<FilesMatch "\.*\.(css|js|png|jpe?g|svg|)">
+    Require all granted
+</FilesMatch>
+
+<FilesMatch "\.*\.(gitignore|json|lock|pdf|md)">
+    Require all denied
+</FilesMatch>
+
+###############################################
+## Block acess to all files in vendor folder ##
+###############################################
+RedirectMatch 403 ^/vendor/.*$

@@ -1,0 +1,41 @@
+{% extends "admin/partials/base.admin.html.twig" %}
+
+{% block title %}Add genre | Admin{% endblock %}
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ baseUrl }}/assets/css/formStyle.css">
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5" id="form-container">
+        <form action="{{ baseUrl }}/admin/genre/add" method="post" id="form-data" class="pb-3">
+            <div class="form-group">
+                <label for="genre-add-new">Genre:</label>
+                <input type="text" name="genre-add-new" id="genre-add-new" placeholder=" Example: &quot;Comedy&quot;"
+                       class="form-control" autofocus required>
+            </div>
+            <div id="form-btn-group">
+                <input type="submit" value="Add genre" class="btn btn-primary">
+                <input type="reset" value="Reset" class="btn btn-danger">
+            </div>
+        </form>
+        {% if addGenre is defined %}
+            {% if addGenre == true %}
+                <div class="alert alert-success" role="alert">
+                    Genre added with success !
+                </div>
+            {% else %}
+                <div class="alert alert-danger" role="alert">
+                    Error when adding the genre !
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

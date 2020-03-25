@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="icon" href="{{ baseUrl }}/assets/img/favicon.png" type="image/png">
+    {% block stylesheets %}
+
+    {% endblock %}
+</head>
+<body>
+<header role="banner">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+        <a class="navbar-brand" href="{{ baseUrl }}/admin">Admin</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenuHide"
+                aria-controls="navbarMenuHide" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenuHide">
+            <ul class="navbar-nav nav-pills mr-auto">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Genres</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a href="{{ baseUrl }}/admin/genre/add" class="dropdown-item">Add genre</a>
+                        <a href="{{ baseUrl }}/admin/genre/edit" class="dropdown-item">Edit genre</a>
+                        <a href="{{ baseUrl }}/admin/genre/delete" class="dropdown-item">Delete genre</a></div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Artists</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a href="{{ baseUrl }}/admin/artist/add" class="dropdown-item">Add artist</a>
+                        <a href="{{ baseUrl }}/admin/artist/edit" class="dropdown-item">Edit artist</a>
+                        <a href="{{ baseUrl }}/admin/artist/delete" class="dropdown-item">Delete artist</a></div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Movies</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a href="{{ baseUrl }}/admin/movie/add" class="dropdown-item">Add movie</a>
+                        <a href="{{ baseUrl }}/admin/movie/edit" class="dropdown-item">Edit movie</a>
+                        <a href="{{ baseUrl }}/admin/movie/delete" class="dropdown-item">Delete movie</a></div>
+                </li>
+{#                <li class="nav-item dropdown">#}
+{#                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"#}
+{#                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actors</a>#}
+{#                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">#}
+{#                        <a href="{{ baseUrl }}/admin/actor/add" class="dropdown-item">Add actor</a>#}
+{#                        <a href="{{ baseUrl }}/admin/actor/edit" class="dropdown-item">Edit actor</a>#}
+{#                        <a href="{{ baseUrl }}/admin/actor/delete" class="dropdown-item">Delete actor</a></div>#}
+{#                </li>#}
+{#                <li class="nav-item dropdown">#}
+{#                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"#}
+{#                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Directors</a>#}
+{#                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">#}
+{#                        <a href="{{ baseUrl }}/admin/director/add" class="dropdown-item">Add director</a>#}
+{#                        <a href="{{ baseUrl }}/admin/director/edit" class="dropdown-item">Edit director</a>#}
+{#                        <a href="{{ baseUrl }}/admin/director/delete" class="dropdown-item">Delete director</a></div>#}
+{#                </li>#}
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarProfileMenu" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">User</a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarProfileMenu">
+                        <a class="dropdown-item" href="{{ baseUrl }}">Back Home</a>
+                        <a class="dropdown-item" href="{{ baseUrl }}/admin/logout">Logout and redirect Home</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+{% block body %}
+
+{% endblock %}
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+{% block javascripts %}
+{% endblock %}
+</body>
+</html>

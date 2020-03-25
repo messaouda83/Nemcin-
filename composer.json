@@ -1,0 +1,10 @@
+{
+    "require": {
+      "twig/twig":"^3.0",
+      "ext-json":"*",
+      "ext-pdo":"*"
+    },
+    "autoload": {
+        "classmap": ["core/", "Controllers/", "Models/", "Admin/"]
+    }
+}

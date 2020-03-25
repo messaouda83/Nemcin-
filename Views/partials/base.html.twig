@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" href="assets/img/favicon.png" type="image/png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ baseUrl }}/assets/css/style.css"/>
+    {% block stylesheets %}
+
+    {% endblock %}
+</head>
+<body>
+<header role="banner" id="header">
+    <nav class="navbar navbar-expand-md navbar-dark color-dark fixed-top ">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHide"
+                aria-controls="navbarHide" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+         <img style= "width:5%;" src="assets/img/logo.png">
+        <div class="collapse navbar-collapse " id="navbarHide">
+            <ul class="navbar-nav d-flex justify-content-center w-100  ">
+               <li class="nav-item">
+                    <a class="nav-link font-weight-bold text-white text-uppercase mr-5" href="{{ baseUrl }}/movie">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link font-weight-bold text-white text-uppercase mr-5" href="{{ baseUrl }}/genre">Genres</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link font-weight-bold text-white text-uppercase mr-5" href="{{ baseUrl }}/artist">Actors</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link font-weight-bold text-white text-uppercase mr-5" href="{{ baseUrl }}/director">Directors</a>
+                </li>
+                
+
+            </ul>
+        </div>
+    </nav>
+</header>
+{% block body %}
+
+{% endblock %}
+<!-- Footer -->
+<footer class="page-footer font-small color-dark pt-4 mt-5 fixed-bottom">
+    <!-- Copyright -->
+    <div class="footer-copyright text-center text-white py-3">© 2020 Copyright:
+        <a href="https://github.com/Etienne-Schmitt/ACS-MovieRating" target="_blank" > NemCiné</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>       
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+<script>
+    getPagination('#table-id');
+	$('#maxRows').trigger('change');
+	function getPagination (table){
+
+		  $('#maxRows').on('change',function(){
+		  	$('.pagination').html('');						// reset pagination div
+		  	var trnum = 0 ;									// reset tr counter 
+		  	var maxRows = parseInt($(this).val());			// get Max Rows from select option
+        
+		  	var totalRows = $(table+' tbody tr').length;		// numbers of rows 
+			 $(table+' tr:gt(0)').each(function(){			// each TR in  table and not the header
+			 	trnum++;									// Start Counter 
+			 	if (trnum > maxRows ){						// if tr number gt maxRows
+			 		
+			 		$(this).hide();							// fade it out 
+			 	}if (trnum <= maxRows ){$(this).show();}// else fade in Important in case if it ..
+			 });											//  was fade out to fade it in 
+			 if (totalRows > maxRows){						// if tr total rows gt max rows option
+			 	var pagenum = Math.ceil(totalRows/maxRows);	// ceil total(rows/maxrows) to get ..  
+			 												//	numbers of pages 
+			 	for (var i = 1; i <= pagenum ;){			// for each page append pagination li 
+			 	$('.pagination').append('<li data-page="'+i+'">\
+								      <span>'+ i++ +'<span class="sr-only">(current)</span></span>\
+								    </li>').show();
+			 	}											// end for i 
+     
+         
+			} 												// end if row count > max rows
+			$('.pagination li:first-child').addClass('active'); // add active class to the first li 
+        
+        
+        //SHOWING ROWS NUMBER OUT OF TOTAL DEFAULT
+       showig_rows_count(maxRows, 1, totalRows);
+        //SHOWING ROWS NUMBER OUT OF TOTAL DEFAULT
+
+        $('.pagination li').on('click',function(e){		// on click each page
+        e.preventDefault();
+				var pageNum = $(this).attr('data-page');	// get it's number
+				var trIndex = 0 ;							// reset tr counter
+				$('.pagination li').removeClass('active');	// remove active class from all li 
+				$(this).addClass('active');					// add active class to the clicked 
+        
+        
+        //SHOWING ROWS NUMBER OUT OF TOTAL
+       showig_rows_count(maxRows, pageNum, totalRows);
+        //SHOWING ROWS NUMBER OUT OF TOTAL
+        
+        
+        
+				 $(table+' tr:gt(0)').each(function(){		// each tr in table not the header
+				 	trIndex++;								// tr index counter 
+				 	// if tr index gt maxRows*pageNum or lt maxRows*pageNum-maxRows fade if out
+				 	if (trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows)){
+				 		$(this).hide();		
+				 	}else {$(this).show();} 				//else fade in 
+				 }); 										// end of for each tr in table
+					});										// end of on click pagination list
+		});
+											// end of on select change 
+		 
+								// END OF PAGINATION 
+    
+	}	
+
+
+			
+
+// SI SETTING
+$(function(){
+	// Just to append id number for each row  
+default_index();
+					
+});
+
+//ROWS SHOWING FUNCTION
+function showig_rows_count(maxRows, pageNum, totalRows) {
+   //Default rows showing
+        var end_index = maxRows*pageNum;
+        var start_index = ((maxRows*pageNum)- maxRows) + parseFloat(1);
+        var string = 'Showing '+ start_index + ' to ' + end_index +' of ' + totalRows + ' entries';               
+        $('.rows_count').html(string);
+}
+
+// CREATING INDEX
+function default_index() {
+  $('table tr:eq(0)').prepend('<th> ID </th>')
+
+					var id = 0;
+
+					$('table tr:gt(0)').each(function(){	
+						id++
+						$(this).prepend('<td>'+id+'</td>');
+					});
+}
+
+// All Table search script
+function FilterkeyWord_all_table() {
+  
+// Count td if you want to search on all table instead of specific column
+
+  var count = $('.table').children('tbody').children('tr:first-child').children('td').length; 
+
+        // Declare variables
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("search_input_all");
+  var input_value =     document.getElementById("search_input_all").value;
+        filter = input.value.toLowerCase();
+  if(input_value !=''){
+        table = document.getElementById("table-id");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 1; i < tr.length; i++) {
+          
+          var flag = 0;
+           
+          for(j = 0; j < count; j++){
+            td = tr[i].getElementsByTagName("td")[j];
+            if (td) {
+             
+                var td_text = td.innerHTML;  
+                if (td.innerHTML.toLowerCase().indexOf(filter) > -1) {
+               
+                  flag = 1;
+                } else {
+                  //DO NOTHING
+                }
+              }
+            }
+          if(flag==1){
+                     tr[i].style.display = "";
+          }else {
+             tr[i].style.display = "none";
+          }
+        }
+    }else {
+    
+      $('#maxRows').trigger('change');
+    }
+}
+</script>
+{% block javascripts %}
+
+{% endblock %}
+</body>
+</html>

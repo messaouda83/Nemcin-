@@ -1,0 +1,17 @@
+{% extends "partials/base.html.twig" %}
+
+{% block title %}404 Page not found...{% endblock %}
+
+{% block body %}
+    <div class="jumbotron bg-transparent table-style">
+        <div class="container text-center">
+            <h2>Error 404</h2>
+            <p class="lead overflow-hidden">
+                The page <span class="font-italic">{{ request }}</span> don't exist...
+            </p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

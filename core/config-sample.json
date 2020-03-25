@@ -1,0 +1,6 @@
+{
+    "dsn": "mysql:host=localhost;dbname=db_Artistes;charset=utf8",
+    "user": "root",
+    "psswd": "",
+    "baseUrl": "http://localhost/MovieArtiste"
+}

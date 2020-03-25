@@ -1,0 +1,63 @@
+{% extends "admin/partials/base.admin.html.twig" %}
+
+{% block title %}Edit Artist | Admin{% endblock %}
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ baseUrl }}/assets/css/formStyle.css">
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5" id="form-container">
+        <form action="{{ baseUrl }}/admin/artist/edit" method="post" id="form-data" class="pb-3">
+            <div class="input-group pb-1" id="artist-old">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="artist-edit-old">Genre to edit:</label>
+                </div>
+                <select class="custom-select" name="artist-edit-old" id="artist-edit-old">
+                    <option value="">--Please choose an artist--</option>
+                    {% if arrayArtists is defined %}
+                        {% for id, artist in arrayArtists %}
+                            <option name="{{ id }}" id="{{ id }}">{{ artist.lastname }} {{ artist.firstname }}
+                                - {{ artist.birthdate }}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+            </div>
+            <div class="form-group hidden" id="artist-firstname">
+                <label for="artist-edit-firstname">New artist firstname:</label>
+                <input type="text" name="artist-edit-firstname" id="artist-edit-firstname" class="form-control" required>
+            </div>
+            <div class="form-group hidden" id="artist-lastname">
+                <label for="artist-edit-lastname">New artist lastname:</label>
+                <input type="text" name="artist-edit-lastname" id="artist-edit-lastname" class="form-control" required>
+            </div>
+            <div class="form-group hidden" id="artist-birthdate">
+                <label for="artist-edit-birthdate">New artist birth year:</label>
+                <input type="number" name="artist-edit-birthdate" id="artist-edit-birthdate" class="form-control" required>
+            </div>
+            <div class="hidden" id="form-btn-group">
+                <input type="submit" value="Edit artist" class="btn btn-primary">
+                <input type="reset" value="Reset" class="btn btn-danger">
+            </div>
+        </form>
+        {% if editGenre is defined %}
+            {% if editGenre == true %}
+                <div class="alert alert-success" role="alert">
+                    Genre updated with success !
+                </div>
+            {% else %}
+                <div class="alert alert-danger" role="alert">
+                    Error when updating the genre !
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ baseUrl }}/assets/js/artistEditForm.js"></script>
+{% endblock %}
