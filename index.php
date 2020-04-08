@@ -24,7 +24,7 @@ $mainRouter->addRouteGET('/genre', 'Genre.showGenre');
 $mainRouter->addRouteGET('/artist', 'Artist.showArtist');
 $mainRouter->addRouteGET('/director', 'Director.showDirector');
 $mainRouter->addRouteGET('/movie', 'Movie.showMovie');
-$mainRouter->addRouteGET('/', 'Home.showHome');
+$mainRouter->addRouteGET('/', 'Home.showMovie');
 $mainRouter->error404GET(":file");
 
 // AdminGenre
@@ -46,7 +46,7 @@ $mainRouter->addRouteGET('/admin/movie/delete', 'AdminMovie.showDelMovie');
 
 //// POST
 $mainRouter->addRoutePOST('/admin/genre/add', 'AdminGenre.insertNewGenre');
-$mainRouter->addRoutePOST('/admin/genre/edit', 'AdminGenre.editGenre');
+$mainRouter->addRoutePOST('/admin/genre/edit', 'AdminGenre.showEditGenre');
 $mainRouter->addRoutePOST('/admin/genre/delete', 'AdminGenre.deleteGenre');
 
 $mainRouter->addRoutePOST('/admin/artist/add', 'AdminArtist.insertNewArtist');

@@ -1,18 +1,28 @@
 <?php
 
 /**
- * Class HomeController
+ * Class GenreController
  */
-class HomeController extends Controller
-{
+class HomeController extends Controller {
+
+    /** @var Home Instance of Home Class */
+     private $home;
+    
     public function __construct()
     {
         parent::__construct();
-        self::$_twig = parent::getTwig();
+        $this->home = new Home();
     }
 
-    public function showHome()
+    public function showMovie()
     {
-        echo $this->showPage('home.html.twig');
+        $allMovies = Home::convertMovieArrayForTwig($this->homegit ->getAllMovies());
+        $pageTwig = 'home.html.twig';
+        self::$_twig->addGlobal("arrayMovies", $allMovies);
+        echo $this->showPage($pageTwig);
     }
+
+
+
+
 }
